@@ -1,0 +1,8 @@
+# Configuration data defined here can be accesses in any place as Settings.param
+# You can use settings.local.yml to tweak settings for your local development environment
+# gem rails_config
+
+# Configuration shared between all environments:
+
+twitter_key: TWITTER_KEY
+twitter_secret: TWITTER_SECRET

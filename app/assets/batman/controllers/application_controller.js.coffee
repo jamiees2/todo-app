@@ -1,0 +1,1 @@
+class BatmanTodo.ApplicationController extends Batman.Controller

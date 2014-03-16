@@ -1,0 +1,39 @@
+section#todoapp
+  header#header
+    h1
+      | todos
+    form data-formfor-todo="newTodo" data-event-submit="createTodo"
+      input#new-todo type="text" placeholder="What needs to be completed?" autofocus="autofocus" data-bind="todo.title"
+  section#main data-showif="Todo.all.length"
+    input#toggle-all type="checkbox" data-event-change="toggleAll" data-source="Todo.completed.length | equals Todo.all.length"
+    label for="toggle-all"
+      | Mark all as complete
+    ul#todo-list
+      li data-foreach-todo="currentTodos" data-addclass-completed="todo.completed" data-addclass-editing="todo.editing"
+        .view data-hideif="todo.editing"
+          input.toggle type="checkbox" data-bind="todo.completed" data-event-change="todoDoneChanged"
+          label data-bind="todo.title" data-event-doubleclick="toggleEditing"
+          button.destroy data-event-click="destroyTodo"
+        input.edit type="text" data-bind="todo.title" data-bind-id="'todo-input-' | append todo.id" data-event-blur="toggleEditing" data-event-keypress="disableEditingUponSubmit"
+  footer#footer data-showif="Todo.all.length"
+    span#todo-count
+      strong data-bind="Todo.active.length"
+      span data-bind="'item' | pluralize Todo.active.length, false"
+      |  left 
+    ul#filters
+      li
+        a data-addclass-selected="currentRoute.action | equals 'all'" data-route="'/'"
+          | All
+      li
+        a data-addclass-selected="currentRoute.action | equals 'active'" data-route="'/active'"
+          | Active
+      li
+        a data-addclass-selected="currentRoute.action | equals 'completed'" data-route="'/completed'"
+          | Completed
+    button#clear-completed data-event-click="clearCompleted" data-showif="Todo.completed.length"
+      |  Clear completed (
+      span data-bind="Todo.completed.length"
+      | ) 
+footer#info
+  p
+    | Double-click to edit a todo

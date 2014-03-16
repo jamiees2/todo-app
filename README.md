@@ -1,2 +1,1 @@
-todo-app
-========
+# Lokaverkefni í VEF3B
